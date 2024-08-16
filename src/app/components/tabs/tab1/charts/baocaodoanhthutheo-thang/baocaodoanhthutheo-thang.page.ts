@@ -68,14 +68,15 @@ export class BaocaodoanhthutheoThangPage implements OnInit {
   label: any = [];
   data: any = [];
   API: any = '/reports/chartmonth';
+  API_CUSTOMER: any = '/reports/chartdaycustomer';
   API_CIRCLE: any = '/reports/chartmonthcircle';
   API_CATEGORY: string = '/category';
-
+  const_arr_cus: any = [];
   doughnutChart: any;
-
+  dataSourceCus: any;
   displayedColumns: string[] = ['no', 'total', 'discount'];
   dataSource: any;
-
+  const_data_cus: any = {};
 
   constructor(private dateAdapter: DateAdapter<Date>, private _data: DataService,private authService: AuthService ) {
     // this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
@@ -125,6 +126,7 @@ export class BaocaodoanhthutheoThangPage implements OnInit {
     this.Loading = false;
     this._data.post(this.currentUser.ip + this.API_CIRCLE, { month: month.toString(), year: year.toString() }).subscribe(x => {
       const_circle = x || [];
+      console.log(const_circle);
       this.parseDataArrayString(const_circle);
       this.Loading = true;
     }, (error) => {
@@ -186,16 +188,21 @@ export class BaocaodoanhthutheoThangPage implements OnInit {
       group = element.group;
     });
     this.dataSource = this.const_arr;
-    
+    console.log(this.dataSource);
 
   }
+
+
+
   parseDataArrayString(data: any) {
     this.label = [];
     this.data = [];
     data?.data.forEach((element: any) => {
-      this.label.push(element.group);
-      this.data.push(element.total);
+      this.data.push({no:'1',discount:element.discount,total:element.total});
+      
     });
+   
+    console.log(this.data);
     this.doughnutChartMethod();
   };
   isGroup(index: any, item: any): boolean {

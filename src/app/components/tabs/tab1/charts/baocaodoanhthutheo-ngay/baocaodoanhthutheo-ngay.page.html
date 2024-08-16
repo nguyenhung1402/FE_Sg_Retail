@@ -35,36 +35,29 @@
         <div>
           <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-            <!-- Total Column -->
-            <!-- <ng-container matColumnDef="no">
-              <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.no}} </mat-cell>
-            </ng-container> -->
+          
 
             <ng-container matColumnDef="no">
               <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.no}} </mat-cell>
             </ng-container>
 
-            <!-- Total Column -->
+     
             <ng-container matColumnDef="total">
               <mat-header-cell *matHeaderCellDef> Thành tiền </mat-header-cell>
               <mat-cell *matCellDef="let element" style="justify-content: end;"> {{element.total}} </mat-cell>
             </ng-container>
 
-            <!-- Discount Column -->
             <ng-container matColumnDef="discount">
               <mat-header-cell *matHeaderCellDef> Giảm giá </mat-header-cell>
               <mat-cell *matCellDef="let element" style="justify-content: end;"> {{element.discount}} </mat-cell>
             </ng-container>
 
-            <!-- <ng-container matColumnDef="groupHeader">
-              <mat-cell *matCellDef="let group" style="font-weight: bold;">{{group.group}}</mat-cell>
-            </ng-container> -->
+  
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-            <!-- <mat-row *matRowDef="let row; columns: ['groupHeader']; when: isGroup"> </mat-row> -->
+          
 
           </mat-table>
         </div>

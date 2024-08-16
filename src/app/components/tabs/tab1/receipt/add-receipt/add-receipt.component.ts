@@ -11,10 +11,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./add-receipt.component.scss'],
 })
 export class AddReceiptComponent implements OnInit {
-
+  searchTerm: string = '';
   Loading = true;
   name: any;
   const_data: any = {};
+  filteredItems: any[] = [];
   checkedItems: any = {};
   const_temps: any = {};
   currentUser: any = {};
@@ -34,6 +35,14 @@ export class AddReceiptComponent implements OnInit {
     this.checkedItems = this.data;
     this.currentUser = this.authService.getParseTokenUser();
     this.loadData();
+    
+  }
+
+  filterItems(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.filteredItems = this.const_data.data.filter((item:any) => 
+      item.itemname.toLowerCase().includes(searchTerm)
+    );
   }
   public openItem(itemId: number): void {
     this.navCtrl.navigateForward(["tab2/pos-additems/pos-details", itemId]);
@@ -50,8 +59,10 @@ export class AddReceiptComponent implements OnInit {
   loadData() {
     this.Loading = false;
     this._data.get(this.currentUser.ip + this.API).subscribe(x => {
-      this.const_data = x || [];
+      this.const_data = x || [];     
+      this.filteredItems = this.const_data?.data;
       this.addItemInList(this.const_data?.data || []);
+      console.log(this.const_data?.data);
       this.Loading = true;
     }, (error) => {
       this.Loading = true;

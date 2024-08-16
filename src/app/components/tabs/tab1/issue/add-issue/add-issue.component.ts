@@ -11,7 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./add-issue.component.scss'],
 })
 export class AddIssueComponent implements OnInit {
-
+  searchTerm: string = '';
+  filteredItems: any[] = [];
   Loading = true;
   name: any;
   const_data: any = [];
@@ -40,6 +41,15 @@ export class AddIssueComponent implements OnInit {
     // this.loadDataDrink();
     this.checkedItems = this.data;
   }
+
+  filterItems(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.filteredItems = this.const_data.data.filter((item:any) => 
+      item.itemname.toLowerCase().includes(searchTerm)
+    );
+  }
+
+
   public openItem(itemId: number): void {
     // this.showLoading();
     this.navCtrl.navigateForward(["tab2/pos-additems/pos-details", itemId]);
@@ -57,6 +67,7 @@ export class AddIssueComponent implements OnInit {
     this.Loading = false;
     this._data.get(this.currentUser.ip + this.API).subscribe(x => {
       this.const_data = x || [];
+      this.filteredItems = this.const_data?.data;
       this.addItemInList(this.const_data?.data || []);
       this.Loading = true;
     }, (error) => {

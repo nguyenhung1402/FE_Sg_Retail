@@ -35,6 +35,7 @@ export class staffPage implements OnInit {
     this.currentUser = this.authService.getParseTokenUser();
   }
   loadData() {
+    console.log(this.currentUser);
     this.Loading = false;
     this._data.get(this.currentUser.ip + this.API).subscribe(x => {
       this.staff = x || [];
