@@ -45,12 +45,12 @@
      
             <ng-container matColumnDef="total">
               <mat-header-cell *matHeaderCellDef> Thành tiền </mat-header-cell>
-              <mat-cell *matCellDef="let element" style="justify-content: end;"> {{element.total}} </mat-cell>
+              <mat-cell *matCellDef="let element" style="justify-content: end;"> {{element.total | currency: 'đ ': 'symbol':'1.0'}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="discount">
               <mat-header-cell *matHeaderCellDef> Giảm giá </mat-header-cell>
-              <mat-cell *matCellDef="let element" style="justify-content: end;"> {{element.discount}} </mat-cell>
+              <mat-cell *matCellDef="let element" style="justify-content: end;"> {{element.discount | currency: 'đ ': 'symbol':'1.0'}} </mat-cell>
             </ng-container>
 
   
@@ -83,13 +83,13 @@
             <!-- Total Column -->
             <ng-container matColumnDef="total">
               <mat-header-cell *matHeaderCellDef> Tổng tiền thanh toán </mat-header-cell>
-              <mat-cell *matCellDef="let element" style="justify-content: end;"> {{element.total}} </mat-cell>
+              <mat-cell *matCellDef="let element" style="justify-content: end;"> {{element.total | currency: 'đ ': 'symbol':'1.0'}} </mat-cell>
             </ng-container>
 
             <!-- Discount Column -->
             <ng-container matColumnDef="discount">
               <mat-header-cell *matHeaderCellDef> Tổng Giảm giá </mat-header-cell>
-              <mat-cell *matCellDef="let element" style="justify-content: end;"> {{element.discount}} </mat-cell>
+              <mat-cell *matCellDef="let element" style="justify-content: end;"> {{element.discount | currency: 'đ ': 'symbol':'1.0'}} </mat-cell>
             </ng-container>
 
             
