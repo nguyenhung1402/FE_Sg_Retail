@@ -56,6 +56,7 @@ export class ShowBillComponent implements OnInit {
     return this.modalCtrl.dismiss('Done', 'confirm');
   }
   async print() {
+    console.log("IN PRINT");
     let text: any;
     var dateBill = '';
     this.date = moment(this.data?.CreatedAt);
